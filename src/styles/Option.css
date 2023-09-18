@@ -1,0 +1,10 @@
+.Option{
+    width: 80px;
+    height: fit-content;
+    border-radius: 8px;
+    background-color: #F5F7FB;
+    color: #293264;
+    font-size: 11px;
+    border: 1px solid #4D5B9E;
+    margin-bottom: 10px;
+}

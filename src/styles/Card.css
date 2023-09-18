@@ -4,12 +4,20 @@ body{
 .card-container{
     display: flex;
     flex-direction: column;
+    width: 500px;
     font-family: 'Karla', sans-serif;
     color: #293264;
     
 }
+.ans-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
 button{
-    width: 100px;
+    width: 80px;
     height: 30px;
     border-radius: 8px;
     background-color: #F5F7FB;
@@ -18,27 +26,50 @@ button{
     border: 1px solid #4D5B9E;
     margin-bottom: 10px;
 }
+.PlayAgain{
+    width: 120px;
+    height: 30px;
+}
+.CheckAnswer{
+    width: 120px;
+    height: 30px;
+}
 hr{
     width: 100%;
     height: 1px;
     background-color: #DBDEF0;
     border: none;
 }
-.btn-options{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
+
 h3{
-    font-size: 25px;
+    font-size: 18px;
     font-weight: bold;
 }
-@media (max-width: 768px) {
+.btn-selected{
+    background-color: #D6DBF5;
+}
+@media (max-width: 508px) {
+    .card-container{
+        width: 350px;
+        
+    }
     button{
-        width: 60px;
+        width: 80px;
+        height: fit-content;
+        padding: 5px;
+        
+        font-size: 10px;
+    }
+    .PlayAgain{
+        width: 80px;
         height: 20px;
+        
+    }
+    .CheckAnswer{
+        width: 120px;
+        height: 30px;
     }
     h3{
-        font-size: 16px;
+        font-size: 12px;
     }
 }
