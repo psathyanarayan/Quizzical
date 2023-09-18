@@ -1,0 +1,22 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  position: relative;
+}
+.design {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+
+}
+.design2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+
+}

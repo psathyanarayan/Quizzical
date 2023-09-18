@@ -1,0 +1,44 @@
+body{
+    margin: 0;
+}
+.card-container{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Karla', sans-serif;
+    color: #293264;
+    
+}
+button{
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #F5F7FB;
+    color: #293264;
+    font-size: 11px;
+    border: 1px solid #4D5B9E;
+    margin-bottom: 10px;
+}
+hr{
+    width: 100%;
+    height: 1px;
+    background-color: #DBDEF0;
+    border: none;
+}
+.btn-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+h3{
+    font-size: 25px;
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+    button{
+        width: 60px;
+        height: 20px;
+    }
+    h3{
+        font-size: 16px;
+    }
+}

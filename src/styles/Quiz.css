@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    background-color: #F5F7FB;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Karla', sans-serif;
+    color: #293264;
+    
+  }
+button{
+    width: 190px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #4D5B9E;
+    color: #F5F7FB;
+    border: 1px solid #4D5B9E;
+    margin-bottom: 0;
+
+  }
+
+  
+
+  /* Your other CSS styles here */
+  
