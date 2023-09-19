@@ -1,6 +1,7 @@
 import React from "react"
 import "/src/styles/Question.css"
 import Card from "/src/components/Card.jsx"
+import SolutionCard from "./SolutionCard"
 import { nanoid } from "nanoid"
 export default function Question() {
     const [ansCheck,setAnsCheck] = React.useState(false)
@@ -11,6 +12,10 @@ export default function Question() {
     const [correctAns,setCorrectAns] = React.useState([])
     
     
+    React.useEffect(() => {
+        console.log(question)
+
+    },[question])
 
     React.useEffect(() => {
     if (playAgain === true) {
@@ -40,44 +45,64 @@ export default function Question() {
     }
   }, [playAgain]);
 
-  function handleClick(ans,ques) {
+  function handleClick(ans,ques,count) {
     // Check if selectedAnswer is null to prevent multiple selections
-    console.log(ans)
     setQuestion((prevArr) => {
         return prevArr.map((item) => {
-            if (item.id === ques.id) {
-            return {
-                ...item,
-                [ans.isHeld]: !ans.isHeld,
-            };
-            } else {
-            return item;
-            }
-        })
-    })
-    if(ans.isHeld){
-      setAnswers((prevAnswers) => {
-        return {
-          ...prevAnswers,
-          [id]: ans.answers,
-        }
-      })
+          const updatedAnswers = item.answers.map((ansItem) => {
+            
+            if (ansItem.id === ans.id) {
+              // Spread the 'ansItem' and update 'isHeld' property based on 'ans.isHeld'
 
-      if(ans === correctAns){
-        setScoreCount(prevScore => prevScore + 1)
-      }
+              return {
+                ...ansItem,
+                isHeld: !ansItem.isHeld, // Assuming 'ans.isHeld' is a boolean
+                CheckAns: ansItem.answer === ques.correct_answer,
+              };
+
+            } else {
+              return ansItem; // Return 'ansItem' unchanged if the condition doesn't match
+            }
+          });
+
+      
+          // Spread the 'item' and update 'answers' property with the updatedAnswers array
+          return {
+            ...item,
+            answers: updatedAnswers,
+          };
+        });
+      });
+      
+    // if(ans.isHeld){
+    //   setAnswers((prevAnswers) => {
+    //     return {
+    //       ...prevAnswers,
+    //       id: ans.id,
+    //     }
+    //   })
+    //   const selectedAnswer = ans.map((item) => {
+    //     if(item.isHeld){
+    //       if(item.answer === ques.correct_answer){
+    //     setScoreCount(prevScore => prevScore + 1)
+            
+    //       }
+    //     }
+    //   })
+      
     }
     
-  }
+  
     function CheckAnswer(){
         setAnsCheck(true)
+        
     }
     function PlayAgain(){
         setPlayAgain(true)
         setAnsCheck(false)
     }
     return(
-        <div className="question-container">
+        ansCheck==false ? <div className="question-container">
             {question.map((item) => (
         <Card id={item.id} key={item.id} onclick={handleClick} question={item.question} correct_answer={item.correct_answer} ques={item} avail_answers={item.answers}   />
       ))}
@@ -88,7 +113,16 @@ export default function Question() {
                         <button className="PlayAgain" onClick={PlayAgain}>Play Again</button>
                     </div>):
                 (
-                    <button className="CheckAnswer" onClick={CheckAnswer}>Check Answers</button>)}
+                    
+                    <button className="CheckAnswer" onClick={CheckAnswer}>Submit Answers</button>)}
+        </div>:<div className="question-container">
+            {question.map((item) => (
+        <SolutionCard id={item.id} key={item.id}  question={item.question} correct_answer={item.correct_answer} ques={item} avail_answers={item.answers}   />
+      ))}
+         <div className="play-again">
+                        <p>You scored 3/5 correct answers</p>
+                        <button className="PlayAgain" onClick={PlayAgain}>Play Again</button>
+                    </div>   
         </div>
     )
 }
