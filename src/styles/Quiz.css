@@ -21,8 +21,12 @@ button{
     margin-bottom: 0;
 
   }
+.desc{
+  width: 300px;
+}
 
-  
-
+img{
+  width: 150px;
+}
   /* Your other CSS styles here */
   

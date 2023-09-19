@@ -3,19 +3,15 @@ import "/src/styles/Question.css"
 import Card from "/src/components/Card.jsx"
 import SolutionCard from "./SolutionCard"
 import { nanoid } from "nanoid"
+import Confetti from 'react-confetti'
 export default function Question() {
     const [ansCheck,setAnsCheck] = React.useState(false)
     const [playAgain,setPlayAgain] = React.useState(true)
     const [scoreCount, setScoreCount] = React.useState(0)
-    const [answer,setAnswers] = React.useState({})
     const [question,setQuestion] = React.useState([])
-    const [correctAns,setCorrectAns] = React.useState([])
     
     
-    React.useEffect(() => {
-        console.log(question)
 
-    },[question])
 
     React.useEffect(() => {
     if (playAgain === true) {
@@ -53,7 +49,9 @@ export default function Question() {
             
             if (ansItem.id === ans.id) {
               // Spread the 'ansItem' and update 'isHeld' property based on 'ans.isHeld'
-
+              if(ansItem.answer === ques.correct_answer){
+                  setScoreCount(prev => prev+1)
+              }
               return {
                 ...ansItem,
                 isHeld: !ansItem.isHeld, // Assuming 'ans.isHeld' is a boolean
@@ -74,21 +72,6 @@ export default function Question() {
         });
       });
       
-    // if(ans.isHeld){
-    //   setAnswers((prevAnswers) => {
-    //     return {
-    //       ...prevAnswers,
-    //       id: ans.id,
-    //     }
-    //   })
-    //   const selectedAnswer = ans.map((item) => {
-    //     if(item.isHeld){
-    //       if(item.answer === ques.correct_answer){
-    //     setScoreCount(prevScore => prevScore + 1)
-            
-    //       }
-    //     }
-    //   })
       
     }
     
@@ -120,7 +103,8 @@ export default function Question() {
         <SolutionCard id={item.id} key={item.id}  question={item.question} correct_answer={item.correct_answer} ques={item} avail_answers={item.answers}   />
       ))}
          <div className="play-again">
-                        <p>You scored 3/5 correct answers</p>
+                        <p>You scored {scoreCount}/5 correct answers</p>
+                        {scoreCount == 5 ? <Confetti />:null}
                         <button className="PlayAgain" onClick={PlayAgain}>Play Again</button>
                     </div>   
         </div>

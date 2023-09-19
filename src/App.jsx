@@ -3,6 +3,10 @@ import "/src/App.css"
 import Quiz from "/src/components/Quiz.jsx"
 import Question from "./components/Question"
 export default function App() {
+  const [quizStarted, setQuizStarted] = React.useState(false);
+  const handleStartQuiz = () => {
+    setQuizStarted(true);
+  };
   return (
     <main>
       <div className="design">
@@ -21,8 +25,12 @@ export default function App() {
           />
         </svg>
       </div>
-      {/* <Quiz /> */}
-      <Question />
+      
+      {!quizStarted ? (
+        <Quiz onStartQuiz={handleStartQuiz} />
+      ) : (
+        <Question />
+      )}
       <div className="design2">
         <svg 
             width="148" 
